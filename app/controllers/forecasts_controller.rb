@@ -17,6 +17,10 @@ class ForecastsController < ApplicationController
     @the_temperature=parsed_data["currently"]["temperature"]
     @the_hour_outlook=parsed_data["minutely"]["summary"]
     @the_day_outlook=parsed_data["hourly"]["summary"]
+    @the_latitude=the_latitude
+    @the_longitude=the_longitude
+    @decoded_location=URI.decode(location)
+
 
   end
 end

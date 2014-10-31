@@ -1,5 +1,42 @@
-<h1><%= @location %></h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 500px;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 12,
+    center: new google.maps.LatLng(<%= @the_latitude %>, <%= @the_longitude %>)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
 
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1><%= @location %></h1>
+  </div>
+</div>
 <p>The current temperature at **<%= @location %>** is **<%= @the_temperature %>** degrees.</p>
 <p>The outlook for the next hour is: **<%= @the_hour_outlook %>.**</p>
 <p>The outlook for the next day is: **<%= @the_day_outlook %>.**</p>
+<div id="map-canvas"></div>
+</body>
+</html>
