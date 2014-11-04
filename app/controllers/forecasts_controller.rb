@@ -3,7 +3,7 @@ require 'json'
 
 class ForecastsController < ApplicationController
   def location
-    @location=params[:address]
+    @location=params[:address].gsub("+"," ")
     location=params[:address]
     url_of_data_we_want="https://maps.googleapis.com/maps/api/geocode/json?address=#{location}"
     raw_data=open(url_of_data_we_want).read
